@@ -1,0 +1,151 @@
+/* =========================
+   GLOBAL THEME
+========================= */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(56, 189, 248, .15), transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(34, 197, 94, .15), transparent 40%),
+        linear-gradient(135deg, #020617, #020617 40%, #020617);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* =========================
+   GLASS CARD
+========================= */
+.card {
+    backdrop-filter: blur(18px);
+    background: rgba(13, 27, 42, .75);
+    border: 1px solid rgba(255, 255, 255, .08);
+    padding: 40px;
+    margin: 40px auto;
+    width: 420px;
+    border-radius: 22px;
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, .7),
+        inset 0 0 40px rgba(255, 255, 255, .02);
+    transition: .35s;
+}
+
+.card:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, .9),
+        0 0 30px rgba(56, 189, 248, .15);
+}
+
+/* =========================
+   HEADINGS
+========================= */
+h1,
+h2,
+h3 {
+    margin-bottom: 20px;
+    letter-spacing: .5px;
+}
+
+/* =========================
+   INPUT FIELDS
+========================= */
+input,
+select {
+    padding: 14px;
+    width: 85%;
+    margin: 12px 0;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, .08);
+    outline: none;
+    background: rgba(255, 255, 255, .03);
+    color: white;
+    transition: .25s;
+}
+
+input:focus,
+select:focus {
+    border: 1px solid #38bdf8;
+    box-shadow: 0 0 12px rgba(56, 189, 248, .35);
+}
+
+/* =========================
+   BUTTON
+========================= */
+button {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    border: none;
+    padding: 14px 30px;
+    border-radius: 14px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .25s;
+    box-shadow: 0 0 20px rgba(34, 197, 94, .3);
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(34, 197, 94, .6);
+}
+
+button:active {
+    transform: scale(.96);
+}
+
+/* =========================
+   NAV LINKS
+========================= */
+nav {
+    margin-top: 20px;
+}
+
+nav a {
+    color: #38bdf8;
+    margin: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    position: relative;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background: #38bdf8;
+    transition: .25s;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* =========================
+   STATUS TEXT
+========================= */
+.status {
+    margin-top: 15px;
+    font-weight: 600;
+    color: #22c55e;
+}
+
+/* =========================
+   HEADER LOGO TITLE
+========================= */
+.header {
+    font-size: 28px;
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, #38bdf8, #22c55e);
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}

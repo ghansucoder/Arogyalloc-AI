@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Medical Inventory</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background: radial-gradient(circle at top, #031525, #01070f);
+            color: white;
+            font-family: Inter;
+            padding: 40px;
+            margin: 0;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            color: #22d3ee
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: #0f172a;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 0 35px rgba(0, 255, 255, .12);
+            transition: .4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 0 60px rgba(0, 255, 255, .3);
+        }
+
+        .name {
+            opacity: .7;
+            font-size: 14px;
+        }
+
+        .val {
+            font-size: 34px;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        /* STATUS COLORS */
+        .green {
+            color: #22c55e
+        }
+
+        .yellow {
+            color: #eab308
+        }
+
+        .red {
+            color: #ef4444
+        }
+
+        /* PROGRESS BAR */
+        .bar {
+            height: 8px;
+            background: #020617;
+            border-radius: 20px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        .fill {
+            height: 100%;
+            border-radius: 20px;
+            animation: grow 1s ease;
+        }
+
+        @keyframes grow {
+            from {
+                width: 0
+            }
+        }
+
+        /* ALERT BADGE */
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 12px;
+            padding: 5px 10px;
+            border-radius: 12px;
+            background: #22c55e;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Hospital Resource Inventory</h1>
+
+    <div id="grid" class="grid"></div>
+
+    <script>
+        const API = "http://127.0.0.1:8000"
+
+        function getStatus(v) {
+            if (v > 60) return ["Stable", "green", v]
+            if (v > 30) return ["Medium", "yellow", v]
+            return ["Critical", "red", v]
+        }
+
+        async function load() {
+
+            let r = await fetch(API + "/inventory")
+            let d = await r.json()
+
+            for (let k in d) {
+
+                let [status, color, val] = getStatus(d[k])
+
+                grid.innerHTML += `
+<div class="card">
+<div class="badge">${status}</div>
+
+<div class="name">${k}</div>
+<div class="val ${color}">${d[k]}</div>
+
+<div class="bar">
+<div class="fill" style="
+width:${val}%;
+background:${color == "green" ? "#22c55e" : color == "yellow" ? "#eab308" : "#ef4444"}
+"></div>
+</div>
+
+</div>`
+            }
+        }
+
+        load()
+    </script>
+
+</body>
+
+</html>

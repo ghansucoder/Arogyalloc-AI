@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Strategy Simulator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Inter;
+            background: #020617;
+            color: white;
+            padding: 40px;
+        }
+
+        .container {
+            display: flex;
+            gap: 30px;
+        }
+
+        .card {
+            flex: 1;
+            background: #0f172a;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 255, 255, .1);
+        }
+
+        .bar {
+            height: 22px;
+            border-radius: 12px;
+            margin: 15px 0;
+            background: #111;
+            overflow: hidden;
+        }
+
+        .fill {
+            height: 100%;
+            background: linear-gradient(90deg, #22d3ee, #4ade80);
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            background: #22d3ee;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Strategy Simulator</h1>
+
+    <div class="container">
+
+        <div class="card">
+            <h2>Current Strategy</h2>
+
+            <div>Wait Time</div>
+            <div class="bar">
+                <div id="c1" class="fill"></div>
+            </div>
+
+            <div>Mortality</div>
+            <div class="bar">
+                <div id="c2" class="fill"></div>
+            </div>
+
+            <div>Staff Load</div>
+            <div class="bar">
+                <div id="c3" class="fill"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>AI Strategy</h2>
+
+            <div>Wait Time</div>
+            <div class="bar">
+                <div id="a1" class="fill"></div>
+            </div>
+
+            <div>Mortality</div>
+            <div class="bar">
+                <div id="a2" class="fill"></div>
+            </div>
+
+            <div>Staff Load</div>
+            <div class="bar">
+                <div id="a3" class="fill"></div>
+            </div>
+
+            <button onclick="simulate()">Run Simulation</button>
+        </div>
+
+    </div>
+
+    <script>
+        function rand() { return Math.floor(Math.random() * 100) }
+
+        function simulate() {
+            c1.style.width = rand() + "%"
+            c2.style.width = rand() + "%"
+            c3.style.width = rand() + "%"
+
+            a1.style.width = rand() + "%"
+            a2.style.width = rand() + "%"
+            a3.style.width = rand() + "%"
+        }
+        simulate()
+    </script>
+
+</body>
+
+</html>
